@@ -5,6 +5,7 @@ library(writexl)
 library(ggplot2)
 library(pheatmap)
 
+## Edit wd and file name as needed 
 setwd('/Users/sf/Library/CloudStorage/Box-Box/Spring2026/McConkey Lab Rotation/PCRs/03102026/')
 pcr_data <- read.csv('SF_03102026_Quantification_Cq_Results.csv') 
 
@@ -22,6 +23,7 @@ pcr_data_analysis <- pcr_data_analysis %>% group_by(Target, Sample) %>% ## using
     ddT = dT - control_dT) %>% ungroup()
 pcr_data_analysis$FC <- 2^(-pcr_data_analysis$ddT)
 
+## update the file save name as needed 
 write_xlsx(pcr_data_analysis, 'PCR_data_R_SF_03102026.xlsx')
 
 pcr_data_analysis$Name <- paste(pcr_data_analysis$Sample,pcr_data_analysis$Condition)
